@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row" class="stytle-form">
+    <div class="col-md-8">
+      <form name="productform" #productform="ngForm" (ngSubmit)="onSubmit()">
+        <div style="display: flex;">
+          <h1 class="text-center">{{myTitle}}</h1>
+          <button class="viewProduct" (click)="server.navigateTo('ViewProduct')">View Product</button>
+          <input type="hidden" name="product_id" class="form-control" [(ngModel)]="productDetail.product_id">
+        </div>
+
+        <div [hidden]="productform.submitted">
+          <div class="form-group">
+            <label for="name">Product Name</label>
+            <input autocomplete="off" name="product_name" class="form-control" required minlength="4"
+              appForbiddenName="bob" [(ngModel)]="productDetail.product_name" #product_name="ngModel">
+
+            <div *ngIf="product_name.invalid && (product_name.dirty || product_name.touched)"
+              class="alert alert-danger">
+              <div *ngIf="product_name.errors.required">Product Name is required.</div>
+              <div *ngIf="product_name.errors.minlength">Product Name must be at least 4 characters long.</div>
+              <div *ngIf="product_name.errors.forbiddenName">Product Name cannot be Bob.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Product Description</label>
+            <input autocomplete="off" name="product_description" class="form-control" required minlength="4"
+              [(ngModel)]="productDetail.product_description" #product_description="ngModel">
+            <div *ngIf="product_description.invalid && (product_description.dirty || product_description.touched)"
+              class="alert alert-danger">
+              <div *ngIf="product_description.errors.required">Product Description is required.</div>
+              <div *ngIf="product_description.errors.minlength">Product Name must be at least 4 characters long.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Product Quantity</label> <br>
+            <button class="delete-btn" type="button" (click)="decrementQty()"><i class="fa fa-minus"
+                aria-hidden="true"></i></button>
+            <span class="ml-10">{{item_qty}}</span>
+            <button class="add-btn ml-10" type="button" (click)="incrementQty()"><i class="fa fa-plus"
+                aria-hidden="true"></i></button>
+          </div>
+
+
+          <div class="form-group">
+            <label for="name">Seller Email</label>
+            <input autocomplete="off" name="seller_emailid" class="form-control" required [pattern]="emailPattern"
+              [(ngModel)]="productDetail.seller_emailid" #seller_emailid="ngModel">
+            <div *ngIf="seller_emailid.invalid && (seller_emailid.dirty || seller_emailid.touched)"
+              class="alert alert-danger">
+              <div *ngIf="seller_emailid.errors.required">Email is required.</div>
+              <div *ngIf="seller_emailid.errors.pattern">Enter a valid email.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Seller Mobile</label>
+            <input autocomplete="off" name="seller_contactno" class="form-control" required [pattern]="mobilePattern"
+              [(ngModel)]="productDetail.seller_contactno" #seller_contactno="ngModel">
+            <div *ngIf="seller_contactno.invalid && (seller_contactno.dirty || seller_contactno.touched)"
+              class="alert alert-danger">
+              <div *ngIf="seller_contactno.errors.required">Mobile is required.</div>
+              <div *ngIf="seller_contactno.errors.pattern">Enter a valid mobile.</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success" [disabled]="productform.invalid">{{button}}</button>
+          </div>
+        </div>
+        <div class="submitted-message" *ngIf="productform.submitted">
+          <h1>{{ productform.value.product_name }}, {{responseMessage}}!</h1>
+          <button class="add-btn" (click)="productform.resetForm({})">Add new Product</button>
+          <button class="delete-btn ml-10" (click)="server.navigateTo('ViewProduct')">All Products</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

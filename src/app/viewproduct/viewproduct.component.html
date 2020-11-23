@@ -1,0 +1,33 @@
+<div class="container">
+    <div style="display: flex;">
+        <h1>Product Details</h1>
+        <button class="addProduct" (click)="server.navigateTo('Product')">Add Product</button>
+    </div>
+    <table class="table table-striped w-auto">
+        <thead>
+            <tr class="table-header">
+                <th>S.No</th>
+                <th>Product Name</th>
+                <th>Seller Email</th>
+                <th>Seller Contact No.</th>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-info" *ngFor="let data of productDetail;let i = index">
+                <th scope="row">{{i +1}}</th>
+                <td>{{data?.product_name}}</td>
+                <td>{{data?.seller_emailid}}</td>
+                <td>{{data?.seller_contactno}}</td>
+                <td>{{data?.product_quantity}}</td>
+                <td>{{data?.product_description}}</td>
+                <td><button (click)="goto(data?.ID)" class="edit"><i class="fa fa-pencil"
+                            aria-hidden="true"></i></button>&nbsp;
+                    <button (click)="deleteProduct(data.ID)" class="delete"><i class="fa fa-trash-o"
+                            aria-hidden="true"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

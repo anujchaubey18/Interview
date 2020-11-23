@@ -1,0 +1,19 @@
+.edit{
+    background-color: green;
+    color: black;
+}
+.delete{
+    background-color: red;
+    color: black;
+}
+.table-header {
+    background: #cccccc;
+    color: #504a4a;
+}
+.addProduct{
+    position: absolute;
+    right: 114px;
+    top: 55px;
+    color: #ffffff;
+    background-color: #336699;
+}

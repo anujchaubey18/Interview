@@ -1,0 +1,31 @@
+
+.delete-btn {
+    background-color: red;
+    color: #ffffff;
+}
+.add-btn {
+    background-color: green;
+    color: #ffffff;
+}
+.ml-10{
+    margin-left: 10px;
+}
+.stytle-form{
+    display: flex;
+    justify-content: center;
+    background-color: #f3f3f3;
+    border: 1px solid;
+    border-radius: 25px;
+    box-shadow: 3px -3px 10px 7px rgba(204,204,204,1);
+    padding: 30px;
+}
+.viewProduct{
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    color: #ffffff;
+    background-color: #336699;
+}
+h1 {
+    font-size: 200% !important;
+}
